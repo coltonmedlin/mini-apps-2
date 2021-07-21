@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
+import Search from './components/Search.jsx';
+import List from './components/List.jsx';
 
 class App extends React.Component {
   render() {
-    const { name } = this.props;
     return (
-      <>
-        <h1>
-          Hello {name}
-        </h1>
-      </>
+      <div>
+       <Search />
+       <List />
+      </div>
     );
   }
 }
