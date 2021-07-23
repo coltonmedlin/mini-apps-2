@@ -9,14 +9,17 @@ class App extends React.Component {
     this.state = {
       events: [],
       total: 0,
+      page: 1,
+      query: '',
     };
 
     this.getEvents = this.getEvents.bind(this);
+    this.updatePage = this.updatePage.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
   };
 
-  async getEvents(page = 1) {
-    console.log('switch to page: ', page);
-    const response = await fetch(`http://localhost:3000/events?_page=${page}&_limit=10&q=queen`);
+  async getEvents() {
+    const response = await fetch(`http://localhost:3000/events?_page=${this.state.page}&_limit=10&q=${this.state.query}`)
     const events = await response.json();
     const total = response.headers.get('x-total-count');
     this.setState({events, total});
@@ -26,14 +29,27 @@ class App extends React.Component {
     this.getEvents();
   };
 
+  updatePage(page) {
+    this.setState({page}, () => {
+      this.getEvents();
+    });
+  };
+
+  updateQuery(query) {
+    //new query resets to first page of results
+    this.setState({page: 1, query}, () => {
+      this.getEvents();
+    });
+  };
+
   render() {
     return (
       <div>
-       <Search />
+       <Search updateQuery={(arg) => {this.updateQuery(arg)}}/>
        <List
           events={this.state.events}
           total={this.state.total}
-          getEvents={this.getEvents}
+          updatePage={(arg) => {this.updatePage(arg)}}
         />
       </div>
     );

@@ -7,12 +7,12 @@ class Search extends React.Component {
       query: ''
     };
 
-    this.handleChange = this.handelChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   };
 
-  handelChange(event) {
+  handleChange(event) {
     this.setState({query: event.target.value}, () => {
-      console.log('query: ', this.state.query)
+      this.props.updateQuery(this.state.query);
     })
   }
 
