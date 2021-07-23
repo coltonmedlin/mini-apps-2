@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Event from './Event.jsx';
 import ReactPaginate from 'react-paginate';
 
-const List = ({events, total, updatePage}) => {
+const List = ({events, total, updatePage, currentPage}) => {
   if (Array.isArray(events)) {
     return(
       <div>
@@ -28,6 +28,7 @@ const List = ({events, total, updatePage}) => {
              const page = data.selected + 1;
              updatePage(page);
            }}
+           forcePage={currentPage - 1}
         />
       </div>
     );

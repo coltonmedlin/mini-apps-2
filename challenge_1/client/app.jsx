@@ -50,6 +50,7 @@ class App extends React.Component {
           events={this.state.events}
           total={this.state.total}
           updatePage={(arg) => {this.updatePage(arg)}}
+          currentPage={this.state.page}
         />
       </div>
     );
