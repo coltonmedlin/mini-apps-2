@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 const Event = ({event}) => {
  return(
    <div>
-     <h1>Event Component</h1>
+     <h3>{event.date}</h3>
      <p>{event.description}</p>
    </div>
  )

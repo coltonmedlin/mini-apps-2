@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import Event from './Event.jsx'
+import Event from './Event.jsx';
+import ReactPaginate from 'react-paginate';
 
 const List = ({events}) => {
-  if (events) {
+  if (Array.isArray(events)) {
     return(
       <div>
-        <h1>List Component</h1>
         <ul>
           {
             events.map((event, index) =>
@@ -15,6 +15,14 @@ const List = ({events}) => {
             )
           }
         </ul>
+        <ReactPaginate
+           previousLabel={'previous'}
+           nextLabel={'next'}
+           breakLabel={'...'}
+           marginPagesDisplayed={3}
+           pageRangeDisplayed={1}
+           pageCount={30}
+        />
       </div>
     );
   }
