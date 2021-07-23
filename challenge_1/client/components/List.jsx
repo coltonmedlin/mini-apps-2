@@ -1,23 +1,24 @@
 import React, {useState} from 'react';
 import Event from './Event.jsx'
 
-const List = () => {
- return(
-   <div>
-     <h1>List Component</h1>
-     <ul>
-       <li>
-        <Event number={1}/>
-       </li>
-       <li>
-        <Event number={2}/>
-       </li>
-       <li>
-        <Event number={3}/>
-       </li>
-     </ul>
-   </div>
- )
+const List = ({events}) => {
+  if (events) {
+    return(
+      <div>
+        <h1>List Component</h1>
+        <ul>
+          {
+            events.map((event, index) =>
+          <li key={index}>
+           <Event event={event}/>
+          </li>
+            )
+          }
+        </ul>
+      </div>
+    );
+  }
+  return null;
 };
 
 export default List;
