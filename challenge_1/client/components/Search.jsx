@@ -1,11 +1,29 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const Search = () => {
- return(
-   <div>
-     <h1>Search Component</h1>
-   </div>
- )
+class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: ''
+    };
+
+    this.handleChange = this.handelChange.bind(this);
+  };
+
+  handelChange(event) {
+    this.setState({query: event.target.value}, () => {
+      console.log('query: ', this.state.query)
+    })
+  }
+
+  render() {
+    return(
+      <div>
+        <input type='text' placeholder="search" value={this.state.query} onChange={this.handleChange}></input>
+      </div>
+    )
+  };
 };
+
 
 export default Search;
