@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Event from './Event.jsx';
 import ReactPaginate from 'react-paginate';
 
-const List = ({events, total, page}) => {
+const List = ({events, total, getEvents}) => {
   if (Array.isArray(events)) {
     return(
       <div>
@@ -19,12 +19,15 @@ const List = ({events, total, page}) => {
            previousLabel={'previous'}
            nextLabel={'next'}
            breakLabel={'...'}
-           marginPagesDisplayed={3}
-           pageRangeDisplayed={1}
+           marginPagesDisplayed={5}
+           pageRangeDisplayed={3}
            pageCount={Math.floor(total/10)}
-           currentPage={page}
            containerClassName={'pagination'}
            activeClassName={'active'}
+           onPageChange={(data) => {
+             const page = data.selected + 1;
+             getEvents(page);
+           }}
         />
       </div>
     );
